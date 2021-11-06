@@ -3,8 +3,9 @@ import java.io.FileWriter;
 import java.util.Scanner;
 
 public class DataSystem {
+    private static String path = "./data";
     static void showUser() {
-        final File folder = new File("./data");
+        final File folder = new File(path);
         for (File file : folder.listFiles()) {
             System.out.println(file.getName());
         }
@@ -13,9 +14,9 @@ public class DataSystem {
     // khoan
     public static void CreaterUser(String username, String Password, int AccBalance) {
         try {
-            File newUser = new File("./data/" + username + ".txt");
+            File newUser = new File(path + "/" + username + ".txt");
             newUser.createNewFile();
-            FileWriter file = new FileWriter("./data/" + username + ".txt");
+            FileWriter file = new FileWriter(path + "/" + username + ".txt");
             file.write(Password + "\n");
             file.write(String.valueOf(AccBalance));
             file.close();
@@ -23,22 +24,22 @@ public class DataSystem {
             System.out.println("Error.");
         }
     }
-
     // Kiem tra ten nguoi dung da ton tai hay chua; tra ve gia tri true hoac false
     // Dung de kiem tra dang ki
     public static boolean checkUsername(String username) {
         username += ".txt";
-        final File folder = new File("./data");
+        final File folder = new File(path);
         for (File file : folder.listFiles()) {
             if (file.getName().equals(username))
-                return true;
+                return false;
         }
-        return false;
+        return true;
     }
     // Kiem tra mat khau cua nguoi dung; tra ve gia tri true hoac false
     // Dung de kiem tra dang nhap
     public static boolean checkPass(String username, String Password) {
-        final File folder = new File("./data");
+        username += ".txt";
+        File folder = new File(path);
         boolean check = false;
         // Duyet tung file trong folder data
         for (File file : folder.listFiles()) {
@@ -61,12 +62,10 @@ public class DataSystem {
     }
     // Xoa tai khoan nguoi dung
     public static void deleteUser(String username) {
-        File file = new File("./data/" + username + ".txt");
+        File file = new File(path + "/" + username + ".txt");
         file.delete();
     }
     public static void main(String[] args) {
-        File folder = new File("data");
-        for (File file : folder.listFiles())
-            System.out.println(file.getName());
+        System.out.println(DataSystem.checkPass("user1", "123456"));
     }
 }
