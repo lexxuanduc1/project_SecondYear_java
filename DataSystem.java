@@ -1,9 +1,12 @@
+package DOAN;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Scanner;
 
 public class DataSystem {
-    private static String path = "./data";
+  //  private static String path = "./data";
+    private static String path = "C:/Users/Administrator/Documents/NetBeansProjects/Test/src/github/project_SecondYear_java/project_SecondYear_java/data";
     static void showUser() {
         final File folder = new File(path);
         for (File file : folder.listFiles()) {
